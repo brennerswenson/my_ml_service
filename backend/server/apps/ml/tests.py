@@ -30,7 +30,6 @@ class MLTests(TestCase):
         self.assertTrue("label" in response)
         self.assertEqual("<=50k", response["label"])
 
-
     def test_registry(self):
         registry = MLRegistry()
         self.assertEqual(len(registry.endpoints), 0)
@@ -44,8 +43,15 @@ class MLTests(TestCase):
         algorithm_code = inspect.getsource(RandomForestClassifier)
 
         # add to registry
-        registry.add_algorithm(endpoint_name, algorithm_object, algorithm_name,
-                    algorithm_status, algorithm_version, algorithm_owner,
-                    algorithm_description, algorithm_code)
+        registry.add_algorithm(
+            endpoint_name,
+            algorithm_object,
+            algorithm_name,
+            algorithm_status,
+            algorithm_version,
+            algorithm_owner,
+            algorithm_description,
+            algorithm_code,
+        )
         # there should be one endpoint available
         self.assertEqual(len(registry.endpoints), 1)
